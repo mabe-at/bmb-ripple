@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `
-    <h1>Ripple demo</h1>
-  `
+  styleUrls: ['./app.component.scss'],
+  templateUrl: './app.component.html',
+  encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
+  centered = true;
+  disabled = false;
+  unbounded = true;
+  radius = 250;
+  color = '#ccc';
 }

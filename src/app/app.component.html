@@ -1,0 +1,56 @@
+<div class="app">
+  <div class="app__container">
+    <h1 class="app__title">Ripple demo</h1>
+    <div class="app__content">
+      <div class="app__controls">
+        <mat-checkbox class="app__controls-item" [(ngModel)]="centered">Centered</mat-checkbox>
+        <mat-checkbox class="app__controls-item" [(ngModel)]="disabled">Disabled</mat-checkbox>
+        <mat-checkbox class="app__controls-item" [(ngModel)]="unbounded">Unbounded</mat-checkbox>
+
+        <div>
+          <mat-form-field class="app__controls-item" appearance="standard">
+            <mat-label>Radius</mat-label>
+            <input matInput placeholder="" value="" type="number" [(ngModel)]="radius" />
+          </mat-form-field>
+
+          <mat-form-field class="app__controls-item" appearance="standard">
+            <mat-label>Color</mat-label>
+            <input matInput placeholder="" value="" [(ngModel)]="color" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div
+        class="example-ripple-container mat-elevation-z4"
+        appRipple
+        [centered]="centered"
+        [disabled]="disabled"
+        [unbounded]="unbounded"
+        [radius]="radius"
+        [color]="color"
+      >
+        Click me
+      </div>
+
+      <div
+        class="shape mat-elevation-z4"
+        appRipple
+        [centered]="centered"
+        [disabled]="disabled"
+        [unbounded]="unbounded"
+        [radius]="radius"
+        [color]="color"
+      ></div>
+
+      <div
+        class="polygon mat-elevation-z4"
+        appRipple
+        [centered]="centered"
+        [disabled]="disabled"
+        [unbounded]="unbounded"
+        [radius]="radius"
+        [color]="color"
+      ></div>
+    </div>
+  </div>
+</div>
