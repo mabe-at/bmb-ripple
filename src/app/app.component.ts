@@ -7,9 +7,9 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
-  centered = true;
+  centered = false;
   disabled = false;
-  unbounded = true;
-  radius = 250;
+  unbounded = false;
+  radius = 100;
   color = '#ccc';
 }
