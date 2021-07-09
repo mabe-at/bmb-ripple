@@ -6,8 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 
+import { RippleModule } from 'bmb-ripple';
+
 import { AppComponent } from './app.component';
-import { RippleModule } from '../../projects/bmb-ripple/src/lib/ripple.module';
 
 @NgModule({
   declarations: [AppComponent],
