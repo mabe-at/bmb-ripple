@@ -123,6 +123,46 @@
           }
         }
       }
+    },
+    "bmb-ripple": {
+      "projectType": "library",
+      "root": "projects/bmb-ripple",
+      "sourceRoot": "projects/bmb-ripple/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/bmb-ripple/tsconfig.lib.json",
+            "project": "projects/bmb-ripple/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/bmb-ripple/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/bmb-ripple/src/test.ts",
+            "tsConfig": "projects/bmb-ripple/tsconfig.spec.json",
+            "karmaConfig": "projects/bmb-ripple/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/bmb-ripple/tsconfig.lib.json",
+              "projects/bmb-ripple/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ripple"

@@ -7,10 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { RippleDirective } from './ripple/ripple.directive';
+import { RippleModule } from '../../projects/bmb-ripple/src/lib/ripple.module';
 
 @NgModule({
-  declarations: [AppComponent, RippleDirective],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -18,6 +18,7 @@ import { RippleDirective } from './ripple/ripple.directive';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    RippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
