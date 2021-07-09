@@ -9,10 +9,7 @@ import {
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
-export interface Coords {
-  x: number;
-  y: number;
-}
+import { Position } from './position';
 
 @Directive({
   selector: '[appRipple]',
@@ -46,24 +43,30 @@ export class RippleDirective implements OnDestroy {
 
   private onMouseDown(event: MouseEvent): void {
     const containerRect = this.element.nativeElement.getBoundingClientRect();
-    const clientRect: Coords = {
-      x: event.clientX,
-      y: event.clientY,
+    const clientRect: Position = {
+      left: event.clientX,
+      top: event.clientY,
     };
 
+    // if radius is not set, we should calculate it, and get furthest corner to fill all available space
     const radius =
       this.radius || this.getDistanceToFurthestCorner(containerRect, event.clientX, event.clientY);
 
-    const calculatedCoords = this.getCoords(containerRect, clientRect, radius);
+    const calculatedPosition = this.getPosition(containerRect, clientRect, radius);
+    const ripple = this.getStyledRipple(calculatedPosition, radius);
 
-    const ripple = this.getStyledRipple(calculatedCoords, radius);
+    this.updateContainerStyles();
+    this.addToDomAndRemoveAfterTimeout(ripple, 1000);
+  }
 
+  private updateContainerStyles(): void {
     if (!this.unbounded) {
       this.element.nativeElement.style.overflow = 'hidden';
       this.element.nativeElement.style.position = 'relative';
+    } else {
+      this.element.nativeElement.style.overflow = 'auto';
+      this.element.nativeElement.style.position = 'inherit';
     }
-
-    this.addToDomAndRemoveAfterTimeout(ripple, 1000);
   }
 
   private addToDomAndRemoveAfterTimeout(element: HTMLElement, timeout: number = 1000): void {
@@ -76,12 +79,12 @@ export class RippleDirective implements OnDestroy {
     this.timers.push(timer);
   }
 
-  private getStyledRipple(coords: Coords, radius: number): HTMLElement {
+  private getStyledRipple(pos: Position, radius: number): HTMLElement {
     const ripple = document.createElement('div');
 
     ripple.classList.add('ripple-element');
-    ripple.style.left = `${coords.x}px`;
-    ripple.style.top = `${coords.y}px`;
+    ripple.style.left = `${pos.left}px`;
+    ripple.style.top = `${pos.top}px`;
     ripple.style.height = `${radius * 2}px`;
     ripple.style.width = `${radius * 2}px`;
     ripple.style.backgroundColor = `${this.color}`;
@@ -89,50 +92,54 @@ export class RippleDirective implements OnDestroy {
     return ripple;
   }
 
-  private getDistanceToFurthestCorner(rect: ClientRect, x: number, y: number): number {
-    const distX = Math.max(Math.abs(x - rect.left), Math.abs(x - rect.right));
-    const distY = Math.max(Math.abs(y - rect.top), Math.abs(y - rect.bottom));
+  private getDistanceToFurthestCorner(containerRect: ClientRect, x: number, y: number): number {
+    const distX = Math.max(Math.abs(x - containerRect.left), Math.abs(x - containerRect.right));
+    const distY = Math.max(Math.abs(y - containerRect.top), Math.abs(y - containerRect.bottom));
 
-    return Math.sqrt(distX * distX + distY * distY);
+    return Math.sqrt(Math.pow(distX, 2) + Math.pow(distY, 2));
   }
 
-  private getCoords(containerRect: ClientRect, clientRect: Coords, radius: number): Coords {
+  private getPosition(containerRect: ClientRect, clientRect: Position, radius: number): Position {
     if (this.centered) {
       return !this.unbounded
-        ? this.getCenteredBoundedCoords(containerRect, radius)
-        : this.getCenteredUnboundedCoords(containerRect, radius);
+        ? this.getCenteredBoundedPosition(containerRect, radius)
+        : this.getCenteredUnboundedPosition(containerRect, radius);
     }
 
     return !this.unbounded
-      ? this.getBoundedCoords(containerRect, clientRect, radius)
-      : this.getUnboundedCoords(clientRect, radius);
+      ? this.getBoundedPosition(containerRect, clientRect, radius)
+      : this.getUnboundedPosition(clientRect, radius);
   }
 
-  private getCenteredBoundedCoords(containerRect: ClientRect, radius: number): Coords {
+  private getCenteredBoundedPosition(containerRect: ClientRect, radius: number): Position {
     return {
-      x: containerRect.width / 2 - radius,
-      y: containerRect.height / 2 - radius,
+      left: containerRect.width / 2 - radius,
+      top: containerRect.height / 2 - radius,
     };
   }
 
-  private getCenteredUnboundedCoords(containerRect: ClientRect, radius: number): Coords {
+  private getCenteredUnboundedPosition(containerRect: ClientRect, radius: number): Position {
     return {
-      x: containerRect.left + containerRect.width / 2 - radius,
-      y: containerRect.top + containerRect.height / 2 - radius,
+      left: containerRect.left + containerRect.width / 2 - radius,
+      top: containerRect.top + containerRect.height / 2 - radius,
     };
   }
 
-  private getUnboundedCoords(clientRect: Coords, radius: number): Coords {
+  private getUnboundedPosition(clientRect: Position, radius: number): Position {
     return {
-      x: clientRect.x - radius,
-      y: clientRect.y - radius,
+      left: clientRect.left - radius,
+      top: clientRect.top - radius,
     };
   }
 
-  private getBoundedCoords(containerRect: ClientRect, clientRect: Coords, radius: number): Coords {
+  private getBoundedPosition(
+    containerRect: ClientRect,
+    clientRect: Position,
+    radius: number
+  ): Position {
     return {
-      x: clientRect.x - containerRect.left - radius,
-      y: clientRect.y - containerRect.top - radius,
+      left: clientRect.left - containerRect.left - radius,
+      top: clientRect.top - containerRect.top - radius,
     };
   }
 }
