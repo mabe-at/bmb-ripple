@@ -1,5 +1,8 @@
 # BmbRipple
 
+## Demo
+![Demo](https://media.giphy.com/media/IyuXb64EHkyge2kH3v/giphy.gif)
+
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.14.
 
 ## How to install
