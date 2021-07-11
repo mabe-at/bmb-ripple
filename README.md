@@ -1,26 +1,68 @@
-# Ripple
+# BmbRipple
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.14.
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.14.
 
-## Development server
+## How to install
+```
+npm install bmb-ripple --save-dev
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Add bmb-ripple to your module where you want to use it
+```
+import { RippleModule } from 'bmb-ripple'; 
+```
+
+## Add styles
+Add these styles below to your index.css
+```
+.ripple-element {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0.75;
+  animation: ripple 0.4s linear;
+  z-index: -1;
+}
+
+@keyframes ripple {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+```
+
+## How to use
+
+```
+<div
+  bmbRipple
+  [centered]="false"
+  [disabled]="false"
+  [unbounded]="false"
+  [radius]="100"
+  [color]="#ccc"
+>
+  Click me
+</div>
+```
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng generate component component-name --project bmb-ripple` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project bmb-ripple`.
+> Note: Don't forget to add `--project bmb-ripple` or else it will be added to the default project in your `angular.json` file. 
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build bmb-ripple` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+## Publishing
+
+After building your library with `ng build bmb-ripple`, go to the dist folder `cd dist/bmb-ripple` and run `npm publish`.
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Run `ng test bmb-ripple` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Further help
 
