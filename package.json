@@ -21,7 +21,7 @@
     "@angular/platform-browser": "~11.2.14",
     "@angular/platform-browser-dynamic": "~11.2.14",
     "@angular/router": "~11.2.14",
-    "bmb-ripple": "^0.0.1",
+    "bmb-ripple": "^1.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
@@ -46,5 +46,20 @@
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~4.1.5"
-  }
+  },
+  "keywords": [
+    "Angular",
+    "Ripple",
+    "Material",
+    "TypeScript"
+  ],
+  "bugs": {
+    "url": "https://github.com/bmarvinb/bmb-ripple/issues"
+  },
+  "homepage": "https://github.com/bmarvinb/bmb-ripple",
+  "author": {
+    "name": "Dmitry Moiseev",
+    "email": "mdmitry94@gmail.com"
+  },
+  "license": "MIT"
 }

@@ -1,11 +1,26 @@
 {
   "name": "bmb-ripple",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "peerDependencies": {
     "@angular/common": "^11.2.14",
     "@angular/core": "^11.2.14"
   },
   "dependencies": {
     "tslib": "^2.0.0"
-  }
+  },
+  "keywords": [
+    "Angular",
+    "Ripple",
+    "Material",
+    "TypeScript"
+  ],
+  "bugs": {
+    "url": "https://github.com/bmarvinb/bmb-ripple/issues"
+  },
+  "homepage": "https://github.com/bmarvinb/bmb-ripple",
+  "author": {
+    "name": "Dmitry Moiseev",
+    "email": "mdmitry94@gmail.com"
+  },
+  "license": "MIT"
 }
