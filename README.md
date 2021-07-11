@@ -8,13 +8,13 @@ npm install bmb-ripple --save-dev
 ```
 
 ## Add bmb-ripple to your module where you want to use it
-```
+```javascript
 import { RippleModule } from 'bmb-ripple'; 
 ```
 
 ## Add styles
 Add these styles below to your index.css
-```
+```css
 .ripple-element {
   position: absolute;
   border-radius: 50%;
@@ -34,7 +34,7 @@ Add these styles below to your index.css
 
 ## How to use
 
-```
+```html
 <div
   bmbRipple
   [centered]="false"
