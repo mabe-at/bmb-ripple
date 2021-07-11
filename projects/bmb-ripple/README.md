@@ -3,18 +3,18 @@
 This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.14.
 
 ## How to install
-`
+```
 npm install bmb-ripple --save-dev
-`
+```
 
 ## Add bmb-ripple to your module where you want to use it
-`
+```
 import { RippleModule } from 'bmb-ripple'; 
-`
+```
 
 ## Add styles
 Add these styles below to your index.css
-`
+```
 .ripple-element {
   position: absolute;
   border-radius: 50%;
@@ -30,10 +30,11 @@ Add these styles below to your index.css
     opacity: 0;
   }
 }
-`
+```
 
 ## How to use
-`
+
+```
 <div
   bmbRipple
   [centered]="false"
@@ -44,7 +45,7 @@ Add these styles below to your index.css
 >
   Click me
 </div>
-`
+```
 
 ## Code scaffolding
 
