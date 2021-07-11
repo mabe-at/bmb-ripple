@@ -12,7 +12,7 @@ import { DOCUMENT } from '@angular/common';
 import { Position } from './position';
 
 @Directive({
-  selector: '[appRipple]',
+  selector: '[bmbRipple]',
 })
 export class RippleDirective implements OnDestroy {
   @Input() centered: boolean;

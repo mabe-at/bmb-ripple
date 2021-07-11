@@ -6,11 +6,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 
+import { RippleModule } from 'bmb-ripple';
+
 import { AppComponent } from './app.component';
-import { RippleDirective } from './ripple/ripple.directive';
 
 @NgModule({
-  declarations: [AppComponent, RippleDirective],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -18,6 +19,7 @@ import { RippleDirective } from './ripple/ripple.directive';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    RippleModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
